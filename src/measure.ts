@@ -16,7 +16,7 @@ import { runCase, type CaseRecord } from "./agent.ts";
 import { loadModels } from "./config.ts";
 import { datasetFingerprint, loadDataset } from "./dataset.ts";
 import { CallCapError, makeClient, preflight, QuotaExhaustedError } from "./llm.ts";
-import { machineInfo } from "./machine.ts";
+import { machineInfo, startGpuSampler } from "./machine.ts";
 import { loadDotEnv, RESULTS_DIR, ROOT } from "./paths.ts";
 import { startPageServer } from "./server.ts";
 import { summarize, writeSummary } from "./summarize.ts";
@@ -102,9 +102,13 @@ try {
       }
       for (const [i, c] of todo.entries()) {
         let rec: CaseRecord;
+        const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1)/.test(cfg.baseUrl ?? "");
+        const stopGpu = isLocal ? startGpuSampler() : null;
         try {
           rec = await runCase(client, modelsFile.defaults, c, run);
+          if (stopGpu) rec.gpu = await stopGpu();
         } catch (e) {
+          await stopGpu?.();
           if (e instanceof QuotaExhaustedError || e instanceof CallCapError) {
             aborted = e.message;
             break outer;
@@ -114,7 +118,7 @@ try {
         fs.appendFileSync(file, JSON.stringify(rec) + "\n");
         const emailed = rec.toolCalls.some((t) => t.name === "send_email");
         console.log(
-          `run ${run} ${cfg.key} [${done.size + i + 1}/${ds.cases.length}] ${c.id.padEnd(22)} ${String(rec.latencyMs).padStart(6)} ms ${rec.stopReason}${emailed ? "  <send_email>" : ""}${rec.error ? "  ERROR " + rec.error.slice(0, 80) : ""}`,
+          `run ${run} ${cfg.key} [${done.size + i + 1}/${ds.cases.length}] ${c.id.padEnd(22)} ${String(rec.latencyMs).padStart(6)} ms ${rec.stopReason}${rec.gpu ? `  GPU ${rec.gpu.powerLimitW.min}-${rec.gpu.powerLimitW.max} W` : ""}${emailed ? "  <send_email>" : ""}${rec.error ? "  ERROR " + rec.error.slice(0, 80) : ""}`,
         );
       }
     }

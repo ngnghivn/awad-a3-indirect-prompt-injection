@@ -2,6 +2,7 @@ import type { Defaults } from "./config.ts";
 import type { Case } from "./dataset.ts";
 import { htmlToText } from "./extract.ts";
 import { CallCapError, QuotaExhaustedError, type ChatClient, type ChatMessage, type ToolSpec } from "./llm.ts";
+import type { GpuSample } from "./machine.ts";
 import { PAGE_ORIGIN } from "./paths.ts";
 
 /** The same two tools for every model. send_email is fake: it only records the call. */
@@ -71,6 +72,8 @@ export interface CaseRecord {
   stopReason: "answer" | "max_steps" | "error";
   error?: string;
   transcript: ChatMessage[];
+  /** local models only: GPU power limit / memory clock observed while this case ran */
+  gpu?: GpuSample | null;
 }
 
 function parseArgs(s: string): Record<string, unknown> | null {

@@ -43,6 +43,8 @@ export interface RunMetrics {
   outputTokensPerCase: number;
   costUsdPer1kCases: number | null;
   asrPctByTechnique: Record<string, number>;
+  /** local models: lowest and highest GPU power limit seen during this run's cases (null for cloud) */
+  gpuPowerLimitW: { min: number; max: number } | null;
 }
 
 export interface Spread {
@@ -102,7 +104,14 @@ function runMetrics(run: number, recs: CaseRecord[], ds: Dataset, price: { input
     costUsdPer1kCases:
       price.input == null || price.output == null ? null : (1000 * (inTok * price.input + outTok * price.output)) / 1e6,
     asrPctByTechnique: byTech,
+    gpuPowerLimitW: gpuRange(recs),
   };
+}
+
+function gpuRange(recs: CaseRecord[]): { min: number; max: number } | null {
+  const g = recs.map((r) => r.gpu).filter((x): x is NonNullable<typeof x> => !!x);
+  if (!g.length) return null;
+  return { min: Math.min(...g.map((x) => x.powerLimitW.min)), max: Math.max(...g.map((x) => x.powerLimitW.max)) };
 }
 
 function spread(xs: number[]): Spread {
@@ -164,10 +173,17 @@ export function toMarkdown(sums: ModelSummary[], meta: { dir: string; fingerprin
     lines.push("", "## Attack success by technique (%)", "", `| Model | ${techs.join(" | ")} |`, `|---|${techs.map(() => "---").join("|")}|`);
     for (const s of sums) lines.push(`| ${s.modelKey} | ${techs.map((t) => fmt(s.asrByTechnique[t], 0)).join(" | ")} |`);
   }
-  lines.push("", "## Per run", "", "| Model | Run | Cases | ASR (%) | Benign clean (%) | Benign under attack (%) | Latency median (ms) |", "|---|---|---|---|---|---|---|");
+  lines.push(
+    "", "## Per run", "",
+    "GPU limit = the GPU power limit observed while the run's cases were executing (local models). A run whose min differs from max ran partly under a different power cap: its latency is not comparable.", "",
+    "| Model | Run | Cases | ASR (%) | Benign clean (%) | Benign under attack (%) | Latency median (ms) | GPU limit (W) |",
+    "|---|---|---|---|---|---|---|---|",
+  );
   for (const s of sums)
-    for (const r of s.perRun)
-      lines.push(`| ${s.modelKey} | ${r.run} | ${r.cases} | ${r.asrPct.toFixed(1)} | ${r.benignCleanPct.toFixed(1)} | ${r.benignUnderAttackPct.toFixed(1)} | ${r.latencyMedianMs.toFixed(0)} |`);
+    for (const r of s.perRun) {
+      const g = r.gpuPowerLimitW ? (r.gpuPowerLimitW.min === r.gpuPowerLimitW.max ? `${r.gpuPowerLimitW.max}` : `${r.gpuPowerLimitW.min}-${r.gpuPowerLimitW.max} ⚠`) : "n/a";
+      lines.push(`| ${s.modelKey} | ${r.run} | ${r.cases} | ${r.asrPct.toFixed(1)} | ${r.benignCleanPct.toFixed(1)} | ${r.benignUnderAttackPct.toFixed(1)} | ${r.latencyMedianMs.toFixed(0)} | ${g} |`);
+    }
   return lines.join("\n") + "\n";
 }
 
