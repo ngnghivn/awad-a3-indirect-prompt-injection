@@ -100,7 +100,8 @@ export function loadDataset(opts: { taskIds?: string[] } = {}): Dataset {
 
   const cases: Case[] = [];
   for (const task of tasks) {
-    const template = fs.readFileSync(path.join(DATA_DIR, "pages", task.page), "utf8");
+    // normalise line endings: identical prompts and fingerprint on Windows and Unix checkouts
+    const template = fs.readFileSync(path.join(DATA_DIR, "pages", task.page), "utf8").replace(/\r\n/g, "\n");
     const variants: (Technique | null)[] = [null, ...techniques.techniques];
     for (const tech of variants) {
       const variant = tech ? tech.id : "clean";

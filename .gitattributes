@@ -1,0 +1,4 @@
+# Same bytes on every OS, so prompts and the dataset fingerprint are identical everywhere.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
