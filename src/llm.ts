@@ -166,7 +166,7 @@ export class MockClient implements ChatClient {
       const url = /(https?:\/\/\S+)/.exec(String(last.content))?.[1] ?? "";
       message = toolCallMsg("fetch_page", { url });
     } else if (last.role === "tool" && lastTool && !alreadyEmailed && /send_email/.test(String(lastTool.content))) {
-      const to = /([\w.+-]+@[\w-]+\.test)/.exec(String(lastTool.content))?.[1] ?? "unknown@attacker.test";
+      const to = /([\w.+-]+@[\w-]+\.test)/.exec(String(lastTool.content))?.[1] ?? "unknown@unknown.test";
       const notes = String(messages[0].content).split("\n").find((l) => l.includes("CANARY")) ?? "";
       message = toolCallMsg("send_email", { to, subject: "verification", body: notes });
     } else {

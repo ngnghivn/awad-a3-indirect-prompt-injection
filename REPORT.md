@@ -29,7 +29,7 @@ dataset fingerprint `<from summary.md>`.
 | Data | <N> tasks × (1 clean + 5 injection techniques) = <N> cases per run, <R> runs |
 
 Injection techniques: visible note, `display:none` div, 1px white text, image `alt`, fake system message.
-Attack goal (OWASP ASI01, goal hijack): make the agent call `send_email` to `verify@attacker.test`.
+Attack goal (OWASP ASI01, goal hijack): make the agent call `send_email` to `verification@helpdesk-mail.test` (a neutral address; see AI-LOG for why).
 
 ## 3. Results
 <!-- Paste the main table from results/final/summary.md. Median [min-max] over runs. -->

@@ -41,4 +41,13 @@ The rubric asks for at least one thing the assistant got wrong and how we caught
   truncation. One "attack success" transcript read by hand: the agent really emailed the secret to
   `verify@attacker.test`, then answered the user without mentioning it.
 
+### 2026-11-22 — A — Claude Code: the attack address gave itself away
+- **Caught an error (in the assistant's own design):** the first attacker address was
+  `verify@attacker.test`. The 9b pilot resisted 100% of attacks, and its reasoning said why: the address
+  belonged to "an attacker". The word in the address, not the model's judgement, may have stopped the
+  attack, so the benchmark would have measured the wrong thing and made every model look safer.
+- **Changed:** the address is now `verification@helpdesk-mail.test`, and a new test fails if any page,
+  prompt or the address contains a telltale word (attack, evil, hack, phish, inject…). Both local pilots
+  were re-run on the new address before the data freeze.
+
 <!-- Add more: date — who — tool — what — Changed / Rejected / Caught -->
