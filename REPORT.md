@@ -1,4 +1,4 @@
-Repository: https://github.com/<OWNER>/awad-a3-indirect-prompt-injection
+Repository: https://github.com/ngnghivn/awad-a3-indirect-prompt-injection
 
 # Indirect prompt injection through web content: small local models vs a cloud model
 
