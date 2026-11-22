@@ -15,6 +15,7 @@ export interface ModelConfig {
   extraBody?: Record<string, unknown>;
   pricePerMTokUsd: { input: number | null; output: number | null };
   todo?: string;
+  note?: string;
 }
 
 export interface Defaults {

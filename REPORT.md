@@ -22,7 +22,7 @@ dataset fingerprint `<from summary.md>`.
 
 | | Value (source, date read) |
 |---|---|
-| Machine | <from results/final/meta.json: CPU, RAM, GPU> |
+| Machine | <from results/final/meta.json: CPU, RAM, GPU> — Dell Precision 5570, on AC power, Windows power mode "Best performance", GPU power limit <W from nvidia-smi> (held fixed for all runs) |
 | Cloud model | <exact id> — free tier, <RPM/RPD> (AI Studio, 2026-11-22) |
 | Local models | <tag + digest from `ollama list`>, quantization <...> (<Ollama library URL>, <date>) |
 | Ollama / Node | <versions from meta.json> |

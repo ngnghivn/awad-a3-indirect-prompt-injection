@@ -30,4 +30,15 @@ The rubric asks for at least one thing the assistant got wrong and how we caught
 - **Changed:** latency excludes the time our own rate limiter sleeps (free-tier pacing is not model
   latency), and local models get one unrecorded warm-up call per run (no cold start in the numbers).
 
+### 2026-11-22 — A — Claude Code: local model setup
+- **Rejected:** model candidates from blog posts. We picked the models from the official Ollama library
+  pages instead: `qwen3.5:4b` and `qwen3.5:9b` (same family, tools tag, both fit 8 GB).
+- **Caught an error (our first guess):** the slow speed (~7 tokens/s) looked like the new Qwen3.5
+  architecture running partly on the CPU. A control test with `qwen3:4b` was just as slow, which ruled
+  that out. `nvidia-smi` showed the real cause: the laptop caps the GPU at 20 W with memory at 810 MHz.
+  So latency depends on the laptop's power mode, and we hold that fixed for all runs.
+- **Checked:** pilot (1 run, 3 tasks) — largest call 1376 tokens vs a 4096-token context, so no silent
+  truncation. One "attack success" transcript read by hand: the agent really emailed the secret to
+  `verify@attacker.test`, then answered the user without mentioning it.
+
 <!-- Add more: date — who — tool — what — Changed / Rejected / Caught -->

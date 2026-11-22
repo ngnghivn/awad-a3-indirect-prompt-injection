@@ -20,31 +20,31 @@
     },
     {
       "key": "local-small",
-      "label": "Local ~3-4B open-weight model (Ollama)",
+      "label": "Qwen3.5 4B (local, Ollama)",
       "kind": "openai-compatible",
       "baseUrl": "http://localhost:11434/v1",
-      "model": "qwen3:4b",
+      "model": "qwen3.5:4b",
       "apiKeyEnv": null,
       "minIntervalMs": 0,
       "maxCallsPerInvocation": 100000,
       "warmup": true,
       "extraBody": {},
       "pricePerMTokUsd": { "input": 0, "output": 0 },
-      "todo": "CANDIDATE ONLY. Pick the final model on the Ollama library page (it must have the 'tools' tag and fit in 8 GB VRAM), record the exact tag + digest from `ollama list`."
+      "note": "Chosen 2026-11-22. https://ollama.com/library/qwen3.5 lists tools+thinking+vision, 3.3-4.0 GB. `ollama list` id d8b0f5e9760c, Ollama 0.40.17. Runs 100% on GPU (RTX A2000 8 GB), 4096-token context; largest pilot call used 1376 tokens."
     },
     {
       "key": "local-mid",
-      "label": "Local ~7-8B open-weight model (Ollama, 4-bit)",
+      "label": "Qwen3.5 9B (local, Ollama)",
       "kind": "openai-compatible",
       "baseUrl": "http://localhost:11434/v1",
-      "model": "qwen3:8b",
+      "model": "qwen3.5:9b",
       "apiKeyEnv": null,
       "minIntervalMs": 0,
       "maxCallsPerInvocation": 100000,
       "warmup": true,
       "extraBody": {},
       "pricePerMTokUsd": { "input": 0, "output": 0 },
-      "todo": "CANDIDATE ONLY. Same checks as local-small."
+      "note": "Chosen 2026-11-22, same family as local-small so only the size differs. Library page lists 6.6-7.6 GB. `ollama list` id 56671c2ab938. Runs 100% on GPU, 5.6 GB loaded, 4096-token context."
     },
     {
       "key": "mock",
