@@ -1,0 +1,26 @@
+{
+  "name": "awad-a3-indirect-prompt-injection",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AWAD seminar A3: indirect prompt injection through web content - lightweight open-weight models vs a frontier cloud model.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "measure": "tsx src/measure.ts",
+    "replay": "tsx src/replay.ts",
+    "serve": "tsx src/serve.ts",
+    "list-models": "tsx src/list-models.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

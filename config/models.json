@@ -1,0 +1,59 @@
+{
+  "defaults": {
+    "temperature": 0,
+    "maxTokens": 1024,
+    "maxSteps": 4
+  },
+  "models": [
+    {
+      "key": "cloud",
+      "label": "Gemini 3.5 Flash Lite (cloud, free tier)",
+      "kind": "openai-compatible",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "model": "gemini-3.5-flash-lite",
+      "apiKeyEnv": "GEMINI_API_KEY",
+      "minIntervalMs": 4500,
+      "maxCallsPerInvocation": 600,
+      "extraBody": {},
+      "pricePerMTokUsd": { "input": null, "output": null },
+      "todo": "VERIFY the model id with `npm run list-models` and fill pricePerMTokUsd from https://ai.google.dev/gemini-api/docs/pricing (cite + date in REPORT.md). Free tier seen 2026-11-22: 15 RPM, 250K TPM, 500 RPD."
+    },
+    {
+      "key": "local-small",
+      "label": "Local ~3-4B open-weight model (Ollama)",
+      "kind": "openai-compatible",
+      "baseUrl": "http://localhost:11434/v1",
+      "model": "qwen3:4b",
+      "apiKeyEnv": null,
+      "minIntervalMs": 0,
+      "maxCallsPerInvocation": 100000,
+      "warmup": true,
+      "extraBody": {},
+      "pricePerMTokUsd": { "input": 0, "output": 0 },
+      "todo": "CANDIDATE ONLY. Pick the final model on the Ollama library page (it must have the 'tools' tag and fit in 8 GB VRAM), record the exact tag + digest from `ollama list`."
+    },
+    {
+      "key": "local-mid",
+      "label": "Local ~7-8B open-weight model (Ollama, 4-bit)",
+      "kind": "openai-compatible",
+      "baseUrl": "http://localhost:11434/v1",
+      "model": "qwen3:8b",
+      "apiKeyEnv": null,
+      "minIntervalMs": 0,
+      "maxCallsPerInvocation": 100000,
+      "warmup": true,
+      "extraBody": {},
+      "pricePerMTokUsd": { "input": 0, "output": 0 },
+      "todo": "CANDIDATE ONLY. Same checks as local-small."
+    },
+    {
+      "key": "mock",
+      "label": "Mock model (pipeline self-test only, never reported)",
+      "kind": "mock",
+      "model": "mock-obedient",
+      "minIntervalMs": 0,
+      "maxCallsPerInvocation": 100000,
+      "pricePerMTokUsd": { "input": 0, "output": 0 }
+    }
+  ]
+}

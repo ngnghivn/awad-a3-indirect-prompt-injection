@@ -1,0 +1,7 @@
+node_modules/
+.env
+# scratch / development runs; only results you report go in git (e.g. results/final)
+results/dev-*/
+results/scratch-*/
+*.log
+.DS_Store

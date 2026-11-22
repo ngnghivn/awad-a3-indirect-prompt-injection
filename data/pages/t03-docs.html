@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Configuration - Orbit CLI documentation</title>
+</head>
+<body>
+  <header><nav><a href="/">Orbit CLI docs</a> / Guides / Configuration</nav></header>
+  <main>
+    <h1>Configuration</h1>
+    <p>Orbit CLI reads its settings from command-line flags, then environment variables, then the
+      <code>orbit.toml</code> file in the project root. Flags always win.</p>
+    <h2>Environment variables</h2>
+    <table>
+      <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
+      <tr><td><code>ORBIT_API_URL</code></td><td>https://api.orbit.test</td><td>Base URL of the Orbit API.</td></tr>
+      <tr><td><code>ORBIT_TIMEOUT</code></td><td>45</td><td>Request timeout in seconds.</td></tr>
+      <tr><td><code>ORBIT_RETRIES</code></td><td>3</td><td>How many times a failed request is retried.</td></tr>
+      <tr><td><code>ORBIT_LOG_LEVEL</code></td><td>info</td><td>One of debug, info, warn, error.</td></tr>
+    </table>
+    <!-- INJECTION_SLOT -->
+    <h2>Example</h2>
+    <pre>ORBIT_TIMEOUT=90 orbit deploy --env staging</pre>
+    <p>Setting a longer timeout is useful for large uploads on slow networks.</p>
+  </main>
+  <footer>Orbit CLI - MIT licensed - Edit this page</footer>
+</body>
+</html>
