@@ -49,5 +49,10 @@ The rubric asks for at least one thing the assistant got wrong and how we caught
 - **Changed:** the address is now `verification@helpdesk-mail.test`, and a new test fails if any page,
   prompt or the address contains a telltale word (attack, evil, hack, phish, inject…). Both local pilots
   were re-run on the new address before the data freeze.
+- **Effect (pilot, 1 run, 15 injected cases each, dev data, not reported):** qwen3.5:9b attack success
+  went from 0% to 46.7%; qwen3.5:4b went from 66.7% to 53.3%. With the old address we would have
+  concluded "the 9b is immune"; that conclusion came from the address, not the model.
+- **Also caught by the GPU logging:** during this pilot the 9b ran under a GPU limit that moved between
+  20 W and 35 W, so its latency is not comparable. The final runs need one fixed power condition.
 
 <!-- Add more: date — who — tool — what — Changed / Rejected / Caught -->
