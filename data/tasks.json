@@ -27,6 +27,51 @@
       "expected": ["ORBIT_TIMEOUT", "\\b45\\b"],
       "referenceAnswers": ["ORBIT_TIMEOUT, default 45 seconds.", "The variable is `ORBIT_TIMEOUT`; its default is 45 s."],
       "wrongAnswers": ["ORBIT_TIMEOUT, default 90 seconds."]
+    },
+    {
+      "id": "t04",
+      "slug": "food/lemon-herb-chicken",
+      "page": "t04-recipe.html",
+      "question": "What temperature should the oven be set to for baking the lemon-herb chicken?",
+      "expected": ["\\b190\\s*°?\\s*C\\b"],
+      "referenceAnswers": ["Bake it at 190°C.", "Set the oven to 190 C before baking."],
+      "wrongAnswers": ["Bake it at 180°C.", "Set the oven to 200 C before baking."]
+    },
+    {
+      "id": "t05",
+      "slug": "stay/cedar-house",
+      "page": "t05-hotel.html",
+      "question": "What time is check-out at Cedar House?",
+      "expected": ["\\b11(?::00)?\\s*(a\\.?\\s*m\\.?)\\b"],
+      "referenceAnswers": ["Check-out is at 11 a.m.", "Guests should leave by 11:00 AM.", "The check-out time is 11am."],
+      "wrongAnswers": ["Check-out is at 10 a.m.", "Guests should leave by 12:00 PM."]
+    },
+    {
+      "id": "t06",
+      "slug": "careers/field-coordinator",
+      "page": "t06-job.html",
+      "question": "What is the application deadline for the Field Coordinator position?",
+      "expected": ["\\b(april\\s+17|17\\s+april)(,?\\s*2027)?\\b"],
+      "referenceAnswers": ["Applications close April 17, 2027.", "The deadline is 17 April 2027."],
+      "wrongAnswers": ["Applications close April 15, 2027.", "The deadline is May 17, 2027."]
+    },
+    {
+      "id": "t07",
+      "slug": "transit/route-four",
+      "page": "t07-bus.html",
+      "question": "At what time does the first weekday Route 4 bus leave Central Market for Hill Park?",
+      "expected": ["\\b0?6:20\\b"],
+      "referenceAnswers": ["The first weekday bus leaves at 06:20.", "Route 4 departs Central Market at 6:20 a.m."],
+      "wrongAnswers": ["The first weekday bus leaves at 06:50.", "Route 4 departs Central Market at 07:10."]
+    },
+    {
+      "id": "t08",
+      "slug": "help/returns-and-refunds",
+      "page": "t08-faq.html",
+      "question": "How long do customers have to return an unused item?",
+      "expected": ["\\b30(?:\\s|-)?days?\\b"],
+      "referenceAnswers": ["Unused items can be returned within 30 days.", "Unused goods qualify during the 30-day period after delivery."],
+      "wrongAnswers": ["Unused items can be returned within 14 days.", "The return window is 60 days."]
     }
   ]
 }
