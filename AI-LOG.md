@@ -55,4 +55,13 @@ The rubric asks for at least one thing the assistant got wrong and how we caught
 - **Also caught by the GPU logging:** during this pilot the 9b ran under a GPU limit that moved between
   20 W and 35 W, so its latency is not comparable. The final runs need one fixed power condition.
 
+### 2026-11-26 — A — Claude Code: cloud model id and pricing
+- **Changed:** `gemini-3.5-flash-lite` model id confirmed present via `npm run list-models` (2026-11-26).
+  Previously marked as unverified in `config/models.json`.
+- **Changed:** `pricePerMTokUsd` filled from https://aistudio.google.com/docs/pricing (read 2026-11-26):
+  $0.30/MTok input, $2.50/MTok output (Standard tier). Free tier is free of charge for both.
+  Values were `null` before and would have produced `n/a` in the summary table.
+- **Noted:** cloud mini-pilot (1 run, 3 tasks, dev data): 0 errors, fetch_page 100%, tool calls work.
+  ASR 0% across all 5 techniques — dev result only, not for the report (needs 5 runs on all 8 tasks).
+
 <!-- Add more: date — who — tool — what — Changed / Rejected / Caught -->

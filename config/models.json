@@ -15,8 +15,8 @@
       "minIntervalMs": 4500,
       "maxCallsPerInvocation": 600,
       "extraBody": {},
-      "pricePerMTokUsd": { "input": null, "output": null },
-      "todo": "VERIFY the model id with `npm run list-models` and fill pricePerMTokUsd from https://ai.google.dev/gemini-api/docs/pricing (cite + date in REPORT.md). Free tier seen 2026-11-22: 15 RPM, 250K TPM, 500 RPD."
+      "pricePerMTokUsd": { "input": 0.30, "output": 2.50 },
+      "note": "Model id verified with `npm run list-models` 2026-11-26. Prices from https://aistudio.google.com/docs/pricing (read 2026-11-26): $0.30/MTok input, $2.50/MTok output (Standard tier). Free tier: input and output free of charge. Free tier quota (AI Studio, read 2026-11-22): 15 RPM, 250K TPM, 500 RPD (Flash: 20 RPD)."
     },
     {
       "key": "local-small",
