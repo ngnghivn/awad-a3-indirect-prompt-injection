@@ -1,0 +1,135 @@
+{
+  "invocations": [
+    {
+      "at": "2026-11-26T08:58:27.017Z",
+      "argv": [
+        "--models",
+        "cloud",
+        "--runs",
+        "4",
+        "--start",
+        "1",
+        "--out",
+        "results/final"
+      ],
+      "machine": {
+        "os": "Windows_NT 10.0.26200 x64",
+        "cpu": "12th Gen Intel(R) Core(TM) i7-12800H",
+        "cpuCount": 20,
+        "memoryGb": 34,
+        "gpu": "NVIDIA RTX A2000 8GB Laptop GPU, 8192 MiB, 610.60",
+        "ollama": "ollama version is 0.40.18",
+        "node": "v22.18.0",
+        "gitCommit": "0986284"
+      },
+      "models": [
+        {
+          "key": "cloud",
+          "model": "gemini-3.5-flash-lite",
+          "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai"
+        }
+      ],
+      "tasks": [
+        "t01",
+        "t02",
+        "t03",
+        "t04",
+        "t05",
+        "t06",
+        "t07",
+        "t08"
+      ]
+    },
+    {
+      "at": "2026-11-26T09:54:25.707Z",
+      "argv": [
+        "--models",
+        "cloud",
+        "--runs",
+        "5",
+        "--start",
+        "5",
+        "--out",
+        "results/final"
+      ],
+      "machine": {
+        "os": "Windows_NT 10.0.26200 x64",
+        "cpu": "12th Gen Intel(R) Core(TM) i7-12800H",
+        "cpuCount": 20,
+        "memoryGb": 34,
+        "gpu": "NVIDIA RTX A2000 8GB Laptop GPU, 8192 MiB, 610.60",
+        "ollama": "ollama version is 0.40.18",
+        "node": "v22.18.0",
+        "gitCommit": "0986284"
+      },
+      "models": [
+        {
+          "key": "cloud",
+          "model": "gemini-3.5-flash-lite",
+          "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai"
+        }
+      ],
+      "tasks": [
+        "t01",
+        "t02",
+        "t03",
+        "t04",
+        "t05",
+        "t06",
+        "t07",
+        "t08"
+      ]
+    },
+    {
+      "at": "2026-11-26T10:32:38.825Z",
+      "argv": [
+        "--models",
+        "local-small,local-mid",
+        "--runs",
+        "5",
+        "--start",
+        "1",
+        "--out",
+        "results/final"
+      ],
+      "machine": {
+        "os": "Windows_NT 10.0.26200 x64",
+        "cpu": "12th Gen Intel(R) Core(TM) i7-12800H",
+        "cpuCount": 20,
+        "memoryGb": 34,
+        "gpu": "NVIDIA RTX A2000 8GB Laptop GPU, 8192 MiB, 610.60",
+        "ollama": "ollama version is 0.40.18",
+        "node": "v22.18.0",
+        "gitCommit": "0986284"
+      },
+      "models": [
+        {
+          "key": "local-small",
+          "model": "qwen3.5:4b",
+          "baseUrl": "http://localhost:11434/v1"
+        },
+        {
+          "key": "local-mid",
+          "model": "qwen3.5:9b",
+          "baseUrl": "http://localhost:11434/v1"
+        }
+      ],
+      "tasks": [
+        "t01",
+        "t02",
+        "t03",
+        "t04",
+        "t05",
+        "t06",
+        "t07",
+        "t08"
+      ]
+    }
+  ],
+  "fingerprint": "3b0cae313b511a24",
+  "defaults": {
+    "temperature": 0,
+    "maxTokens": 1024,
+    "maxSteps": 4
+  }
+}
